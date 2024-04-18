@@ -35,6 +35,7 @@ resource "aws_rds_cluster_instance" "aurora_instance" {
 
 # Criando um grupo de segurança para o RDS
 resource "aws_security_group" "aurora_sg" {
+  name   = "rds_aurora_sg"
   vpc_id = var.vpc_id
 
   // Regra de entrada
@@ -51,6 +52,10 @@ resource "aws_security_group" "aurora_sg" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = var.vpc_cidr_blocks
+  }
+
+  tags = {
+    Name = "rds_aurora_sg"
   }
 }
 
@@ -96,6 +101,10 @@ resource "aws_instance" "bastion" {
   key_name                    = aws_key_pair.key_bastion.key_name
   security_groups             = [aws_security_group.bastion_sg.name]
   associate_public_ip_address = true
+
+  tags = {
+    Name = "bastion_rds"
+  }
 }
 
 resource "null_resource" "aplica_script_database" {
@@ -108,5 +117,14 @@ resource "null_resource" "aplica_script_database" {
       scp -i ./ssh_bastion/easy-food-bastion.pem ../scripts/init_script.sql ec2-user@${aws_instance.bastion.public_ip}:/tmp &&
       ssh -o StrictHostKeyChecking=no -i ./ssh_bastion/easy-food-bastion.pem ec2-user@${aws_instance.bastion.public_ip} "PGPASSWORD=${aws_rds_cluster.aurora_cluster.master_password} psql -h ${aws_rds_cluster.aurora_cluster.endpoint} -U ${aws_rds_cluster.aurora_cluster.master_username} -d ${aws_rds_cluster.aurora_cluster.database_name} -f /tmp/init_script.sql"
     EOT
+  }
+}
+
+# Recurso null_resource para encerrar a instância bastion após a execução do script
+resource "null_resource" "encerra_bation" {
+  depends_on = [null_resource.aplica_script_database]
+
+  provisioner "local-exec" {
+    command = "aws ec2 terminate-instances --instance-ids ${aws_instance.bastion.id}"
   }
 }

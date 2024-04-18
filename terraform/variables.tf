@@ -7,12 +7,12 @@ variable "availability_zones" {
 variable "security_group_ids" {
   description = "Security Groups IDs"
   type        = list(string)
-  default     = ["sg-000935136986ff5b7"]
+  default     = ["sg-028f6f66674c71b3a"]
 }
 
 variable "vpc_id" {
   type    = string
-  default = "vpc-08a2d9585586a3dfe"
+  default = "vpc-09ee8444241f53fb9"
 }
 
 variable "vpc_cidr_blocks" {
