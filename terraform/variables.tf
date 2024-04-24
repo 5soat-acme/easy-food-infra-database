@@ -1,21 +1,19 @@
-variable "availability_zones" {
-  description = "Availability Zones"
-  type        = list(string)
-  default     = ["us-east-1a", "us-east-1b"]
+variable "projectName" {
+  default = "easy-food"
 }
 
-variable "security_group_ids" {
-  description = "Security Groups IDs"
-  type        = list(string)
-  default     = ["sg-02185146b549f752f"]
+variable "vpcId" {
+  default = "vpc-0d7c60ea0dd8f23db"
 }
 
-variable "vpc_id" {
-  type    = string
-  default = "vpc-05b06d841c26f3904"
+variable "vpcCidrBlocks" {
+  default = "172.31.0.0/16"
 }
 
-variable "vpc_cidr_blocks" {
-  type    = list(string)
-  default = ["172.31.0.0/16"]
+variable "availabilityZoneA" {
+  default = "us-east-1a"
+}
+
+variable "availabilityZoneB" {
+  default = "us-east-1b"
 }
