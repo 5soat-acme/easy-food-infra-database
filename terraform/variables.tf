@@ -2,8 +2,10 @@ variable "projectName" {
   default = "easy-food"
 }
 
+variable "password" {}
+
 variable "vpcId" {
-  default = "vpc-0d7c60ea0dd8f23db"
+  default = "vpc-0f7eec94b3ec3116b"
 }
 
 variable "vpcCidrBlocks" {
