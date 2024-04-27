@@ -6,5 +6,4 @@ resource "aws_rds_cluster_instance" "aurora-instance" {
   engine                       = aws_rds_cluster.aurora-cluster.engine
   performance_insights_enabled = false
   monitoring_interval          = 0
-  #publicly_accessible          = true
 }
