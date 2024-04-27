@@ -1,0 +1,30 @@
+# Ignore arquivos de estado do Terraform, que geralmente contêm informações sensíveis e devem ser gerenciados separadamente.
+*.tfstate
+*.tfstate.*
+
+# Ignorar arquivos de backup do Terraform, que geralmente contêm informações sensíveis e devem ser gerenciados separadamente.
+*.backup
+
+# Ignore arquivos de plano gerados pelo Terraform
+terraform.tfplan
+
+# Ignorar a pasta .terraform gerada pelo Terraform
+.terraform/
+
+# Ignorar arquivos de configuração de provedor do Terraform, que podem conter informações sensíveis
+terraform-provider-gcp*
+
+# Ignorar arquivos de configuração de plugin do Terraform
+terraform-provider-*
+
+# Ignorar arquivos .tfvars personalizados que podem conter informações sensíveis
+*.tfvars
+
+# Ignore arquivos de log do Terraform
+terraform.log
+
+# Ignore arquivos de log do provedor de nuvem específico
+*.log
+
+# Ignore arquivos de exceção de configuração do Terraform
+terraform.rc
