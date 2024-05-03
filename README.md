@@ -23,3 +23,6 @@ Além dos secrets da AWS, é necessário configurar uma secret com a senha do ba
 ## Justificativa da escolha do banco de dados :bulb:
 Escolhemos o banco de dados **PostgreSQL**, devido ao projeto ainda estar em monolito, e a haver casos em que faça sentido ter um banco relacional, como por exemplo, o CRUD de produtos. <br>
 Futuramente com a divisão do projeto em microsserviços, faz sentido a criação de um banco de dados NoSQL para alguns contextos, como por exemplo, o contexto de carrinho.
+
+## Diagrama Entidade Relacionamento(DER) :bookmark_tabs:
+Na pasta **docs/der** possui os Diagramas Entidade Relacionamento de cada contexto.
