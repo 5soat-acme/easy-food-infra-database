@@ -3,6 +3,6 @@ resource "null_resource" "encerra-bation" {
   depends_on = [null_resource.aplica-script-database]
 
   provisioner "local-exec" {
-    command = "aws ec2 terminate-instances --instance-ids ${aws_instance.bastion.id}"
+    command = "aws ec2 terminate-instances --instance-ids ${var.aws_instance_bastion_id}"
   }
 }
