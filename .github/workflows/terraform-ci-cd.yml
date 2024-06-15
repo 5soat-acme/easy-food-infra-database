@@ -55,38 +55,8 @@ jobs:
       run: terraform plan -no-color -input=false
       continue-on-error: true
 
-    - name: Update Pull Request
-      uses: actions/github-script@v6
-      if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
-      env:
-        PLAN: ${{ steps.plan.outputs.stdout }}
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
-          #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
-          #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
-          #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
-
-          <details><summary>Show Plan</summary>
-
-          \`\`\`terraform\n
-          ${process.env.PLAN}
-          \`\`\`
-
-          </details>
-
-          *Pushed by: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
-
-          github.rest.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: output
-          })
-
     - name: Terraform Apply
       env:
         TF_VAR_password: ${{ secrets.DATABASE_PASSWORD }}
-      if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+      if: (github.ref == 'refs/heads/main' && github.event_name == 'push') || github.event_name == 'workflow_dispatch'
       run: terraform apply -auto-approve -input=false
