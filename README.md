@@ -2,9 +2,9 @@
 
 ## Arquivos Terraform :cloud:
 Na pasta **terraform** há os arquivos do Terraform para gerenciar a infraestrutura de banco de dados dos microsserviços do projeto **[Easy Food](https://github.com/5soat-acme/easy-food)**. Microsserviços:
-- [Easy Food Pedido](https://github.com/5soat-acme/easy-food-pedido)
-- [Easy Food Pagamento](https://github.com/5soat-acme/easy-food-pagamento)
-- [Easy Food Preparo e Entrega](https://github.com/5soat-acme/easy-food-preparoentrega)
+- [Easy Food - Pedido](https://github.com/5soat-acme/easy-food-pedido)
+- [Easy Food - Pagamento](https://github.com/5soat-acme/easy-food-pagamento)
+- [Easy Food - Preparo e Entrega](https://github.com/5soat-acme/easy-food-preparoentrega)
 
 <br>
 
