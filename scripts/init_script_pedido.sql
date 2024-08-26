@@ -250,6 +250,38 @@ END $EF$;
 COMMIT;
 
 
+-- ### SOLICITAÇÃO EXCLUSÃO ###
+DO $EF$
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20240720195431_BaseInicialIdentidade') THEN
+    CREATE TABLE "SolicitacaoExclusao" (
+        "Id" uuid NOT NULL,
+        "ClienteId" uuid NOT NULL,
+        "Nome" text NOT NULL,
+        "Rua" text NOT NULL,
+        "Numero" integer NOT NULL,
+        "Bairro" text NOT NULL,
+        "Complemento" text NOT NULL,
+        "Cidade" text NOT NULL,
+        "Estado" text NOT NULL,
+        "Cep" text NOT NULL,
+        "NumeroTelefone" text NOT NULL,
+        CONSTRAINT "PK_SolicitacaoExclusao" PRIMARY KEY ("Id")
+    );
+    END IF;
+END $EF$;
+
+DO $EF$
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20240720195431_BaseInicialIdentidade') THEN
+    INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+    VALUES ('20240720195431_BaseInicialIdentidade', '8.0.0');
+    END IF;
+END $EF$;
+COMMIT;
+
+
+
 
 /*
 ##########

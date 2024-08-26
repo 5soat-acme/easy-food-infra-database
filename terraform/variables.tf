@@ -5,7 +5,7 @@ variable "projectName" {
 variable "password" {}
 
 variable "vpcId" {
-  default = "vpc-07223788ed181ad75"
+  default = "vpc-08a69779e510483fd"
 }
 
 variable "vpcCidrBlocks" {
